@@ -1,10 +1,10 @@
-<%- include('partials/_header') %>
+<%- include('partials/_header') -%>
 
 <body>
     <div class="tm-page-wrap mx-auto">
         <div class="position-relative">
 
-            <%- include('partials/_navigation') %>
+            <%- include('partials/_navigation') -%>
            
             <div class="tm-welcome-container text-center text-white">
                 <div class="tm-welcome-container-inner">
@@ -39,8 +39,8 @@
                        
                         <div class="col-lg-4 col-md-6 col-sm-12 tm-catalog-item">
                             <div class="position-relative tm-thumbnail-container">
-                                <img src="img/tn-03.jpg" alt="Image" class="img-fluid tm-catalog-item-img">    
-                                <a href="video-page.html" class="position-absolute tm-img-overlay">
+                                <img src="<%= photos[i].image %>" alt="Image" class="img-fluid tm-catalog-item-img">    
+                                <a href="/photos/<%= photos[i]._id %>" class="position-absolute tm-img-overlay">
                                     <i class="fas fa-play tm-overlay-icon"></i>
                                 </a>
                             </div>                            
@@ -68,7 +68,7 @@
                         </ul>
                     </div>
                 </main>
-                <%- include('partials/_footer') %>
+                <%- include('partials/_footer') -%>
 
     <script>
         function setVideoSize() {
