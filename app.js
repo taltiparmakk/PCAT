@@ -8,11 +8,16 @@ const photoController = require("./controllers/photoController")
 const pageController = require("./controllers/pageController")
 
 //connect DB
-mongoose.connect("mongodb://localhost/pcat-test-db", {
+mongoose.connect("mongodb+srv://taltiparmakk:Fedev123456.@cluster0.plamt.mongodb.net/pcat-db?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   
-});
+}).then(()=> {
+  console.log("DB CONNECTED!")
+}).catch((err)=> {
+  console.log(err)
+})
+
 
 
 //TEMPLATE ENGINE
@@ -45,7 +50,7 @@ app.get('/add', pageController.getAddPage);
 app.get('/photos/edit/:id', pageController.getEditPage);
 
 //app listener yazıyoruz
-const port = 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`sunucu ${port} portunda başarıyla başlatıldı`)
 });

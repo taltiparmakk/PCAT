@@ -4,10 +4,23 @@ const fs = require("fs");
 //Anasayfaya gelindiğinde fotoğrafları hizalar
 
 exports.getAllPhotos = async (req, res) => {
-    const photos = await Photo.find({}).sort("-dateCreated");
-    res.render('index', {
-        photos
-    });
+
+  const page = req.query.page || 1;
+  const photosPerpage = 3;
+
+  const totalPhotos = await Photo.find().countDocuments();
+ 
+  const photos = await Photo.find({})
+  .sort("-dateCreated")
+  .skip((page-1) * photosPerpage)
+  .limit(photosPerpage)
+
+  
+     res.render('index', {
+         photos: photos,
+         current: page,
+         pages: Math.ceil(totalPhotos / photosPerpage)
+     });
 };
 
 exports.getPhoto = async (req, res) => {
